@@ -31,7 +31,7 @@ def page_builder(key, childs, **kwargs):
     )
 
 with oj.PageBuilderCtx(page_builder):
-    from  webworks_website.index import wp_index
+    from  ofjustpy_webworks_website.index import wp_index
     from demos.demo_advanced_components import  wp_demo_advanced_components
     from demos.demo_basic_components import  wp_demo_basic_components
     from demos.demo_render_markdown_formatted import wp_demo_markdown_formatting

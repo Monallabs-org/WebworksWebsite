@@ -31,7 +31,9 @@ logger.setLevel(logging.DEBUG)
 #         Acomp_ref.href = "https" + url[4:]
 #     return href_updater
 
-                 
+
+
+
 def page_builder(edir):
     """
     We need edir to find the example directory within which the example is located.
@@ -39,9 +41,13 @@ def page_builder(edir):
     """
     def page_builder_inner(key, childs, **kwargs):
         title = kwargs.get('title')
+        # hardwiring the examples/index page
+        # because cannot break circular dependency
+        
         nav_buttons = oj.Halign(oj.PC.StackH(childs = [oj.AC.A(key="back_to_examples_index",
-                                                               #href=f"/examples/index",
-                                                               href_builder = oj.href_builder_factory("examples:index"),
+                                                               href=f"/examples_index",
+                                                               #href_builder = oj.href_builder_factory("examples:index"),
+                                                               
                                                                title=f"example index",
                                                                text=f"Back to examples index",
                                                                twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
@@ -81,6 +87,20 @@ def page_builder(edir):
 
 
 with oj.MountCtx("examples"):
+    # there is a circular dependency
+    # the example pages has to have link to index page;
+    # the index page links to all href to example pages;
+    # Ideally, we would like to have forward declaration
+    # But, thats not feasible with Starlette: https://github.com/encode/starlette/discussions/2347
+    # its not feasible to update childs later
+    # endpoint_examples_index = oj.create_endpoint(key="index",
+    #                                              childs = [],
+    #                                              title="Examples codes illustrating usage"
+    #                                              )
+
+
+    #oj.add_jproute("/index", endpoint_examples_index)
+
     with oj.PageBuilderCtx(page_builder("static_webpages")):
         with oj.MountCtx("static_webpages"):    
             static_webpage_module = importlib.import_module("examples.static_webpages",)
@@ -94,34 +114,35 @@ with oj.MountCtx("examples"):
         with oj.MountCtx("mutable_webpages"):
             mutable_components_module = importlib.import_module("examples.mutable_webpages",
                                                             )
+static_example_links = [oj.AC.A(key=f"example_00{idx}",
 
-    static_example_links = [oj.AC.A(key=f"example_00{idx}",
+                                #href=f"/examples/static_webpages/example_00{idx}",
+                                #href_builder  = oj.href_builder_factory(f"examples:static_webpages:example_00{idx}:example_00{idx}"),
+                                href=app.url_path_for(f"examples:static_webpages:example_00{idx}:example_00{idx}"),
+                                title=f"example_00{idx}",
+                                text=f"example_00{idx}",
+                                twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                            shadow/gray/2,
+                                            shadow.md
+                                    ]
+                                )
+                        for idx in range(1,8)
 
-                                    #href=f"/examples/static_webpages/example_00{idx}",
-                                    href_builder  = oj.href_builder_factory(f"examples:static_webpages:example_00{idx}:example_00{idx}"),
-                                    title=f"example_00{idx}",
-                                    text=f"example_00{idx}",
-                                    twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
-                                                shadow/gray/2,
-                                                shadow.md
-                                        ]
-                                    )
-                            for idx in range(1,8)
-
-             ]
+         ]
 
 
-    passive_components = oj.PC.Subsubsection("Passive Components", 
+passive_components = oj.PC.Subsubsection("Passive Components", 
                                              oj.PC.StackV(childs = static_example_links,
                                                           twsty_tags = [space/y/2]
 
                                                           )
                                              )
 
-    input_components_links = [oj.AC.A(key=f"example_00{idx}",
+input_components_links = [oj.AC.A(key=f"example_00{idx}",
 
-                                      #href=f"/examples/input_components/example_00{idx}",
-                                      href_builder  = oj.href_builder_factory(f"examples:input_webpages:example_00{idx}:example_00{idx}"),
+                                  #href=f"/examples/input_components/example_00{idx}",
+                                  #href_builder  = oj.href_builder_factory(f"examples:input_webpages:example_00{idx}:example_00{idx}"),
+                                  href = app.url_path_for(f"examples:input_webpages:example_00{idx}:example_00{idx}"),
                                       title=f"example_00{idx}",
                                       text=f"example_00{idx}",
                                       twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
@@ -134,7 +155,7 @@ with oj.MountCtx("examples"):
                               ]
 
 
-    input_components = oj.PC.Subsubsection("Input Components", 
+input_components = oj.PC.Subsubsection("Input Components", 
                                              oj.PC.StackV(childs = input_components_links,
                                                           twsty_tags = [space/y/2]
 
@@ -142,10 +163,11 @@ with oj.MountCtx("examples"):
                                              )
 
 
-    mutable_components_links = [oj.AC.A(key=f"example_00{idx}",
+mutable_components_links = [oj.AC.A(key=f"example_00{idx}",
 
                                         #href=f"/examples/mutable_components/example_00{idx}",
-                                        href_builder  = oj.href_builder_factory(f"examples:mutable_webpages:example_00{idx}:example_00{idx}"),
+                                    #href_builder  = oj.href_builder_factory(f"examples:mutable_webpages:example_00{idx}:example_00{idx}"),
+                                    href = app.url_path_for(f"examples:mutable_webpages:example_00{idx}:example_00{idx}"),
                                         title=f"example_00{idx}",
                                         text=f"example_00{idx}",
                                         twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
@@ -158,7 +180,7 @@ with oj.MountCtx("examples"):
                                 ]
 
 
-    mutable_components = oj.PC.Subsubsection("Mutable Components", 
+mutable_components = oj.PC.Subsubsection("Mutable Components", 
                                              oj.PC.StackV(num_cols = 2, childs = mutable_components_links,
                                                           twsty_tags = [space/y/2]
 
@@ -167,14 +189,16 @@ with oj.MountCtx("examples"):
 
 
 
-    tlc = oj.PC.Container(childs = [passive_components, input_components, mutable_components],
+tlc = oj.PC.Container(childs = [passive_components, input_components, mutable_components],
                           twsty_tags=oj.ui_styles.sty.stackv
                           )
 
 
+endpoint_examples_index = oj.create_endpoint(key="examples_index",
+                                             childs = [tlc],
+                                             title="Examples codes illustrating usage"
+                                             )
 
-    endpoint_examples_index = oj.create_endpoint(key="index",
-                                                 childs = [tlc],
-                                                 title="Examples codes illustrating usage"
-                                                 )
-    oj.add_jproute("/index", endpoint_examples_index)
+# unable to mount under examples MountCtx
+# due to unresolved circular dependency
+oj.add_jproute("/examples_index", endpoint_examples_index)
