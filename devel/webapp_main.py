@@ -21,22 +21,28 @@ from addict_tracking_changes import Dict
 logging.debug("load app webworks")
 app = oj.load_app()
 
-def page_builder(key, childs, **kwargs):
-    return oj.Mutable.WebPage(
-        key=key,
-        childs=childs,
-        cookie_state_attr_names=oj.aci.the_starlette_app.cookie_state_attr_names,
-        template_file="production_hosting.html", 
-        **kwargs,
-    )
+from webpage_html_rendering_cache_optimization  import create_endpoint
 
-with oj.PageBuilderCtx(page_builder):
-    from  ofjustpy_webworks_website.index import wp_index
-    from demos.demo_advanced_components import  wp_demo_advanced_components
-    from demos.demo_basic_components import  wp_demo_basic_components
-    from demos.demo_render_markdown_formatted import wp_demo_markdown_formatting
-    from demos.demo_pycode_formatting import wp_demo_pycode_formatting
-    import mount_examples
+# def page_builder(key, childs, **kwargs):
+#     #create_endpoint(key, childs, **kwargs)
+#     return oj.Mutable.WebPage(
+#         key=key,
+#         childs=childs,
+#         cookie_state_attr_names=oj.aci.the_starlette_app.cookie_state_attr_names,
+#         template_file="production_hosting.html", 
+#         **kwargs,
+#     )
+
+
+from  ofjustpy_webworks_website.index import wp_index
+from demos.demo_advanced_components import  wp_demo_advanced_components
+from demos.demo_basic_components import  wp_demo_basic_components
+from demos.demo_render_markdown_formatted import wp_demo_markdown_formatting
+from demos.demo_pycode_formatting import wp_demo_pycode_formatting
+import mount_examples
+#with oj.PageBuilderCtx(page_builder):
+    
+    
 
 
 # app.mount("/addict-tracking-changes",

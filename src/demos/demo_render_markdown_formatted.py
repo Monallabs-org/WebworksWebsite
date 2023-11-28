@@ -70,7 +70,8 @@ rendered_viewer = oj.PC.Subsection("HTML rendered via Ofjustpy",
                                    
 
 app = oj.load_app()
-
+#because this uses collapsible component we have to render via svelte
+#from webpage_html_rendering_cache_optimization  import create_endpoint
 wp_demo_markdown_formatting = oj.create_endpoint(key="demo_render_markdown_formatted",
                                          childs = [oj.PC.Container(childs = [collapse_box,
                                                                              rendered_viewer

@@ -88,7 +88,10 @@ tlc = oj.PC.Container(childs = [_ for _ in stubs()])
 # wp_template = oj.Mutable.WebPage(key="static-components",
 #                  childs = [tlc]
 #                  )
-wp_demo_basic_components = oj.create_endpoint(key="demo_basic_components",
+
+# use cached optimized html rendering for responsive static pages. 
+from webpage_html_rendering_cache_optimization  import create_endpoint
+wp_demo_basic_components = create_endpoint(key="demo_basic_components",
                                               childs = [tlc],
                                               title="Demo basic components"
                                               )

@@ -72,7 +72,7 @@ def page_builder(edir):
                                 )
         
 
-        return oj.Mutable.WebPage(key=key,
+        return oj.Mutable.ResponsiveStatic_SSR_WebPage(key=key,
                                childs = [oj.HCCMutable.StackV(childs = [oj.HCCMutable.Div(childs=childs),
                                                                 oj.PC.Hr(twsty_tags=[bg/green/1]),
                                                                 nav_buttons],

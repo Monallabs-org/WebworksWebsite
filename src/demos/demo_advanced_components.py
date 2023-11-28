@@ -362,7 +362,9 @@ button_bar = oj.HCCMutable.StackW(childs = [oj.AC.Button(key="slider_btn",
 tlc = oj.HCCMutable.Container(childs= [title, button_bar, viewdeck],
                               twsty_tags=[H/screen, W/screen, space/y/4]
                           )
-wp_demo_advanced_components = oj.create_endpoint(key="demo_advanced_components",
+# use cached optimized html rendering for responsive static pages. 
+from webpage_html_rendering_cache_optimization  import create_endpoint
+wp_demo_advanced_components = create_endpoint(key="demo_advanced_components",
                                  childs = [tlc],
                                  title="Advanced components demo"
                                  )

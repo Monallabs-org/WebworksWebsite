@@ -178,7 +178,7 @@ slide_info = {"demo": ("Basic and advanced components",
               "examples": ("Examples",
                            
                            oj.AC.A(key=f"examples",
-                                   href=f"/examples/index",
+                                   href=f"/examples_index",
                                    title=f"Example collection",
                                    text=f"Click here for example collection illustrating ofjustpy components usage",
                                    twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
@@ -258,7 +258,9 @@ tlc = oj.HCCMutable.Container(childs = [top_panel,
 
 #wp_index = oj.create_endpoint(wp_template)
 app = oj.load_app()
-wp_index = oj.create_endpoint(key="webworks_index",
+# use cached optimized html rendering for responsive static pages. 
+from webpage_html_rendering_cache_optimization  import create_endpoint
+wp_index = create_endpoint(key="webworks_index",
                               childs = [tlc
                                         ],
                               title="Webworks By Monallabs",
