@@ -155,7 +155,7 @@ slide_info = {"demo": ("Basic and advanced components",
                                                       href=f"/demo_basic_capabilities",
                                                       title=f"demo_basic_capabilities",
                                                       text=f"Basic components",
-                                                      twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                      twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                   shadow/gray/2,
                                                                   shadow.md
                                                                   ]
@@ -164,7 +164,7 @@ slide_info = {"demo": ("Basic and advanced components",
                                                       href=f"/demo_advanced_capabilities",
                                                       title=f"demo_advanced_capabilities",
                                                       text=f"Advanced components",
-                                                      twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                      twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                   shadow/gray/2,
                                                                   shadow.md
                                                                   ]
@@ -181,7 +181,7 @@ slide_info = {"demo": ("Basic and advanced components",
                                    href=f"/examples_index",
                                    title=f"Example collection",
                                    text=f"Click here for example collection illustrating ofjustpy components usage",
-                                   twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                   twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                shadow/gray/2,
                                                shadow.md
                                                ]
@@ -202,7 +202,7 @@ slide_info = {"demo": ("Basic and advanced components",
                                                       href=f"/demo_markdown_formatting",
                                                       title=f"demo markdown formatting",
                                                       text=f"Rendering markdown text using ofjustpy",
-                                                      twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                      twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                   shadow/gray/2,
                                                                   shadow.md
                                                                   ]
@@ -211,7 +211,7 @@ slide_info = {"demo": ("Basic and advanced components",
                                                                href=f"/demo_pycode_formatting",
                                                                title=f"demo pycode formatting",
                                                                text=f"Rendering python code using ofjustpy",
-                                                               twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                               twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                            shadow/gray/2,
                                                                            shadow.md
                                                                            ]
@@ -269,7 +269,7 @@ wp_index = create_endpoint(key="webworks_index",
 
 oj.add_jproute("/", wp_index)
 
-# request = Dict()
-# request.session_id = "abc"
-# wp_index(request)
+# from starlette.testclient import TestClient
+# client = TestClient(app)
+# response = client.get('/')
                            

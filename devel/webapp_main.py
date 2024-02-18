@@ -37,7 +37,7 @@ from webpage_html_rendering_cache_optimization  import create_endpoint
 from  ofjustpy_webworks_website.index import wp_index
 from demos.demo_advanced_components import  wp_demo_advanced_components
 from demos.demo_basic_components import  wp_demo_basic_components
-from demos.demo_render_markdown_formatted import wp_demo_markdown_formatting
+#from demos.demo_render_markdown_formatted import wp_demo_markdown_formatting
 from demos.demo_pycode_formatting import wp_demo_pycode_formatting
 import mount_examples
 #with oj.PageBuilderCtx(page_builder):
@@ -53,6 +53,6 @@ oj.add_jproute("/", wp_index)  #
 oj.add_jproute("/demo_basic_capabilities", wp_demo_basic_components)
 oj.add_jproute("/demo_advanced_capabilities", wp_demo_advanced_components)
 
-oj.add_jproute("/demo_markdown_formatting", wp_demo_markdown_formatting)
+#oj.add_jproute("/demo_markdown_formatting", wp_demo_markdown_formatting)
 
 oj.add_jproute("/demo_pycode_formatting", wp_demo_pycode_formatting)

@@ -196,6 +196,7 @@ code_block_container.components.append(fct)
 overview_box.components.append(feature_interactive_ui_infobox)
 
 # ================================ end ===============================
+# TODO: in the overview page --> provide hyperlink to user_manual
 # writer context should support for loop
 # Points for later
 # talk about oj.uictx

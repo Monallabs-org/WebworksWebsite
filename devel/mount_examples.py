@@ -50,7 +50,7 @@ def page_builder(edir):
                                                                
                                                                title=f"example index",
                                                                text=f"Back to examples index",
-                                                               twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                               twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                            shadow/gray/2,
                                                                            shadow.md
                                                                            ]
@@ -60,7 +60,7 @@ def page_builder(edir):
                                                                title=title,
                                                                target='_blank',
                                                                text=f"View source code",
-                                                               twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                                               twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                                            shadow/gray/2,
                                                                            shadow.md
                                                                            ]
@@ -121,7 +121,7 @@ static_example_links = [oj.AC.A(key=f"example_00{idx}",
                                 href=app.url_path_for(f"examples:static_webpages:example_00{idx}:example_00{idx}"),
                                 title=f"example_00{idx}",
                                 text=f"example_00{idx}",
-                                twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                             shadow/gray/2,
                                             shadow.md
                                     ]
@@ -145,7 +145,7 @@ input_components_links = [oj.AC.A(key=f"example_00{idx}",
                                   href = app.url_path_for(f"examples:input_webpages:example_00{idx}:example_00{idx}"),
                                       title=f"example_00{idx}",
                                       text=f"example_00{idx}",
-                                      twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                      twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                   shadow/gray/2,
                                                   shadow.md
                                                   ]
@@ -170,7 +170,7 @@ mutable_components_links = [oj.AC.A(key=f"example_00{idx}",
                                     href = app.url_path_for(f"examples:mutable_webpages:example_00{idx}:example_00{idx}"),
                                         title=f"example_00{idx}",
                                         text=f"example_00{idx}",
-                                        twsty_tags=[bt.bd, bdr.lg, bd/gray/6,
+                                        twsty_tags=[boxtopo.bd, bdr.lg, bd/gray/6,
                                                     shadow/gray/2,
                                                     shadow.md
                                                     ]

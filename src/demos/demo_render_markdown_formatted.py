@@ -47,7 +47,7 @@ collapse_box = oj.PC.Collapsible(hide_banner_text="Markdown Text",
                                  hide_banner_classes = [min/W/"1/2", W/"2/3"],
                                  childs=[markdown_viewer],
 
-                                 twsty_tags=[bd/gray/5, bd/1, W/full, ovf/x/auto]
+                                 twsty_tags=[bd/gray/5, bd/1, W/full, overflowx.auto]
                                  )
 # collapse_box = oj.PC.Collapsible(hide_banner_text="Expand for TextInput code",
 #                                  hide_banner_classes = [min/W/"1/2", W/"2/3"],

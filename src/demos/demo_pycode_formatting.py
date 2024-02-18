@@ -53,7 +53,7 @@ collapse_box = oj.PC.Collapsible(hide_banner_text="Sample Python code",
                                  hide_banner_classes = [min/W/"1/2", W/"2/3"],
                                  childs=[pycode_viewer],
 
-                                 twsty_tags=[bd/gray/5, bd/1, W/full, ovf/x/auto]
+                                 twsty_tags=[bd/gray/5, bd/1, W/full, overflowx.auto]
                                  )
 
 # use no extrawhitespace style
