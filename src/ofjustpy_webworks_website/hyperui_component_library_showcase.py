@@ -83,38 +83,41 @@ with oj.uictx("tlc") as tlctx:
     sideMenu.add_flat_item("toggles", "Toggles", value="Toggles", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("verticalmenu", "VerticalMenu", value="VerticalMenu", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("ecomcarts", "EcomCarts", value="EcomCarts", on_click=on_hui_comp_selected)
-
-    sideMenu.add_flat_item("EcomCollectionFilters", "EcomCollectionFilters", value="EcomCollectionFilters", on_click=on_hui_comp_selected)
-
-    sideMenu.add_flat_item("EconFeaturedSections", "EconFeaturedSections", value="EconFeaturedSections", on_click=on_hui_comp_selected)
+    ecom_menu_group = sideMenu.add_group_item("eCommerce")
     
-    sideMenu.add_flat_item("EcomProductCards", "EcomProductCards", value="EcomProductCards", on_click=on_hui_comp_selected)
+    ecom_menu_group.add_flat_item("ecomcarts", "Carts", value="EcomCarts", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("EcomProductCollection", "EcomProductCollection", value="EcomProductCollection", on_click=on_hui_comp_selected)
+    ecom_menu_group.add_flat_item("EcomCollectionFilters", "Collection Filters", value="EcomCollectionFilters", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("EcomQuantInp", "EcomQuantInp", value="EcomQuantInp", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingAnnouncements", "MarketingAnnouncements", value="MarketingAnnouncements", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingBanner", "MarketingBanner", value="MarketingBanner", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingBlogCards", "MarketingBlogCards", value="MarketingBlogCards", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("Buttons", "Buttons", value="Buttons", on_click=on_hui_comp_selected)
-    #sideMenu.add_flat_item("", "", value="", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingCards", "MarketingCards", value="MarketingCards", on_click=on_hui_comp_selected)
+    ecom_menu_group.add_flat_item("EconFeaturedSections", "Featured Sections", value="EconFeaturedSections", on_click=on_hui_comp_selected)
+    
+    ecom_menu_group.add_flat_item("EcomProductCards", "Product Cards", value="EcomProductCards", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingCTA", "MarketingCTA", value="MarketingCTA", on_click=on_hui_comp_selected)
+    ecom_menu_group.add_flat_item("EcomProductCollection", "Product Collection", value="EcomProductCollection", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingFAQ", "MarketingFAQ", value="MarketingFAQ", on_click=on_hui_comp_selected)
+    ecom_menu_group.add_flat_item("EcomQuantInp", "Quant Inp", value="EcomQuantInp", on_click=on_hui_comp_selected)
+    marketing_menu_group = sideMenu.add_group_item("Marketing")
+    marketing_menu_group.add_flat_item("MarketingAnnouncements", "Announcements", value="MarketingAnnouncements", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingBanner", "Banner", value="MarketingBanner", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingBlogCards", "BlogCards", value="MarketingBlogCards", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("Buttons", "Buttons", value="Buttons", on_click=on_hui_comp_selected)
+    #marketing_menu_group.add_flat_item("", "", value="", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingCards", "Cards", value="MarketingCards", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingFooter", "MarketingFooter", value="MarketingFooter", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingCTA", "CTA", value="MarketingCTA", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingForm", "MarketingForm", value="MarketingForm", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingFAQ", "FAQ", value="MarketingFAQ", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingHeader", "MarketingHeader", value="MarketingHeader", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingFooter", "Footer", value="MarketingFooter", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("MarketingPopups", "MarketingPopups", value="MarketingPopups", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingPricings", "MarketingPricings", value="MarketingPricings", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingSections", "MarketingSections", value="MarketingSections", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("MarketingTestimonal", "MarketingTestimonal", value="MarketingTestimonal", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingForm", "Form", value="MarketingForm", on_click=on_hui_comp_selected)
+
+    marketing_menu_group.add_flat_item("MarketingHeader", "Header", value="MarketingHeader", on_click=on_hui_comp_selected)
+
+    marketing_menu_group.add_flat_item("MarketingPopups", "Popups", value="MarketingPopups", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingPricings", "MarketingPricings", value="MarketingPricings", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingSections", "Sections", value="MarketingSections", on_click=on_hui_comp_selected)
+    marketing_menu_group.add_flat_item("MarketingTestimonal", "Testimonal", value="MarketingTestimonal", on_click=on_hui_comp_selected)
     
 
 
