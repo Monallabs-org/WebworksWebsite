@@ -2,13 +2,15 @@ import ofjustpy as oj
 from shadcnui_components.dsl  import macros, writer_ctx
 import shadcnui_components as SCUI
 from py_tailwind_utils import *
-from ofjustpy import icons as Icons
-
+from ofjustpy.icons import FontAwesomeIcon
 oj.set_style("un")
 
 with writer_ctx:
     with SCUI.Alert() as alert_box:
-        with SCUI.Alert.Title():
+        with SCUI.Alert.Title(twsty_tags=[db.f, space/x/4]):
+            with FontAwesomeIcon(label="faTerminal", classes="w-5 h-5"):
+                pass
+            
             with oj.PD.Prose(text="Heads up!"):
                 pass
             pass
@@ -43,7 +45,7 @@ with writer_ctx:
     with SCUI.AlertDialog() as alertdialog_box:
         
         with SCUI.AlertDialog.Trigger():
-            with oj.PD.Prose(text="Open"):
+            with SCUI.Button(key="open", text="Open", variant="outline"):
                 pass
         
         with SCUI.AlertDialog.Content():
@@ -77,10 +79,10 @@ alertdialog_box = oj.HCCStatic.Div(key="AlertDialog",
 
 with writer_ctx:
     with SCUI.Avatar() as avatar_box:
-        with SCUI.Avatar.Image(src="https://avatars.githubusercontent.com/u/124599?v=4", alt="@shadcn"):
+        with SCUI.Avatar.Image(src="https://t4.ftcdn.net/jpg/03/32/59/65/360_F_332596535_lAdLhf6KzbW6PWXBWeIFTovTii1drkbT.jpg", alt="@shadcn"):
             pass
-        with SCUI.Avatar.Fallback(text="CN"):
-            pass
+        # with SCUI.Avatar.Fallback(text="CN"):
+        #     pass
 
 avatar_box = oj.HCCStatic.Div(
     key="Avatar",
@@ -96,15 +98,19 @@ with writer_ctx:
                     with oj.PD.Prose(text="Home"):
                         pass
             
-            with SCUI.Breadcrumb.Separator():
+            # with SCUI.Breadcrumb.Separator():
+            #     pass
+            with FontAwesomeIcon(label="faChevronRight", classes="w-5 h-5"):
                 pass
-            
             with SCUI.Breadcrumb.Item():
                 with SCUI.Breadcrumb.Link(href="/components"):
                     with oj.PD.Prose(text="Components"):
                         pass
             
-            with SCUI.Breadcrumb.Separator():
+            # with SCUI.Breadcrumb.Separator():
+            #     pass
+            
+            with FontAwesomeIcon(label="faChevronRight", classes="w-5 h-5"):
                 pass
             
             with SCUI.Breadcrumb.Item():
@@ -191,9 +197,21 @@ checkbox_box = oj.HCCStatic.Div(key="Checkbox",
 # ============================ collapsible ===========================
 with writer_ctx:
     with SCUI.Collapsible() as collapsible_box:
-        with SCUI.Collapsible.Trigger():
-            with oj.PD.Prose(text="Can I use this in my project?"):
+        with oj.PD.Div(classes="flex items-center justify-between space-x-4 px-4"):
+            with oj.PD.H4(classes="text-sm font-semibold"):
+                with oj.PD.Prose(text="Can I use this in my project?"):
+                    pass
                 pass
+            with SCUI.Collapsible.Trigger():
+                with SCUI.Button(key="updown",
+                                 variant="ghost",
+                                 classes="w-9 p-0"):
+                    with FontAwesomeIcon(label="faUpDown", classes="w-5 h-5"):
+                        pass
+                    pass
+
+                pass
+        
         
         with SCUI.Collapsible.Content():
             with oj.PD.Prose(text="Yes. Free to use for personal and commercial projects. No attribution required."):
@@ -208,7 +226,9 @@ with writer_ctx:
     with SCUI.Dialog() as dialog_box:
         
         with SCUI.Dialog.Trigger():
-            with oj.PD.Prose(text="Open"):
+            with SCUI.Button(text="Open",
+                             key="open",
+                             variant="outline"):
                 pass
         
         with SCUI.Dialog.Content():
@@ -231,7 +251,7 @@ with writer_ctx:
     with SCUI.Drawer() as drawer_box:
         
         with SCUI.Drawer.Trigger():
-            with oj.PD.Prose(text="Open"):
+            with SCUI.Button(key="drawer", text="Open"):
                 pass
         
         with SCUI.Drawer.Content():
@@ -268,7 +288,7 @@ with writer_ctx:
     with SCUI.DropdownMenu() as dropdownmenu_box:
         
         with SCUI.DropdownMenu.Trigger():
-            with oj.PD.Prose(text="Open"):
+            with SCUI.Button(key="dropdown", text="Open"):
                 pass
         
         with SCUI.DropdownMenu.Content():
@@ -324,10 +344,16 @@ hovercard_box = oj.HCCStatic.Div(
 
 # =============================== input==============================
 
-inp1 = SCUI.Input(key="inp1", type="email", placeholder="email", classes="max-w-xs")
+inp1 = SCUI.Input(key="inp1",
+                  type="email",
+                  placeholder="email",
+                  classes="max-w-xs")
 inp_with_label = oj.PD.Div(classes="flex w-full max-w-sm flex-col gap-1.5",
                childs=[SCUI.Label(for_="email", text="Email"),
-                       SCUI.Input(key="inp1", type="email", placeholder="email", classes="max-w-xs")
+                       SCUI.Input(key="inp1",
+                                  type="email",
+                                  placeholder="email",
+                                  classes="max-w-xs")
                    ]
         )
 
@@ -348,8 +374,11 @@ inp_with_button = oj.AD.Form(key="aform", classes="flex w-full max-w-sm items-ce
                                  )
 
                                  
-input_box = oj.PD.StackV(childs=[inp1, inp_with_label, inp_with_label_text, inp_with_button],
-             twsty_tags=[space/y/4]
+input_box = oj.PD.StackV(childs=[inp1,
+                                 inp_with_label,
+                                 inp_with_label_text,
+                                 inp_with_button],
+             twsty_tags=[space/y/8]
              )
 
 input_box = oj.HCCStatic.Div(
@@ -432,7 +461,7 @@ resizable_box = oj.HCCStatic.Div(
     
 # ============================ scrollarea ============================
 with writer_ctx:
-    with SCUI.ScrollArea(classes="h-16 w-32", orientation="both") as scrollarea_box:
+    with SCUI.ScrollArea(classes="h-16 w-80", orientation="both") as scrollarea_box:
         with oj.PD.Prose(twtags_tags=W/"400px", text="Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even    in the royal toilet. The king was furious, but he couldn't seem to stop Jokester. And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And    once they started laughing, they couldn't stop."):
 
         
@@ -450,7 +479,7 @@ scrollarea_box = oj.HCCStatic.Div(
 
 with writer_ctx:
     with SCUI.Select() as select_box:
-        with SCUI.Select.Trigger(classes="w-[400px]"):
+        with SCUI.Select.Trigger(extra_classes="w-[400px]"):
             
             with SCUI.Select.Value(placeholder="Theme"):
                 pass
@@ -523,7 +552,9 @@ with writer_ctx:
     with SCUI.Sheet() as sheet_box:
         
         with SCUI.Sheet.Trigger():
-            with oj.PD.Prose(text="Open"):
+            with SCUI.Button(key="sheet",
+                             text="Open",
+                             variant="outline"):
                 pass
         
         with SCUI.Sheet.Content():
@@ -554,10 +585,10 @@ with writer_ctx:
         
         with oj.PD.Div(classes="space-y-2"):
             
-            with SCUI.Skeleton(classes="h-4 w-[400px]"):
+            with SCUI.Skeleton(classes="h-4 ", extra_classes="w-[400px]"):
                 pass
             
-            with SCUI.Skeleton(classes="h-4 w-[400px]"):
+            with SCUI.Skeleton(classes="h-4 ", extra_classes="w-[400px]"):
                 pass
             
 skeleton_box = oj.HCCStatic.Div(
@@ -567,7 +598,7 @@ skeleton_box = oj.HCCStatic.Div(
 
 # ============================== slider ==============================
 with writer_ctx:
-    with SCUI.Slider(classes="w-[400px]", value="[50]", max_=100, step=1) as slider_box:
+    with SCUI.Slider(extra_classes="w-[400px]", value="[50]", max_=100, step=1) as slider_box:
         pass
 
 slider_box = oj.HCCStatic.Div(
@@ -581,7 +612,7 @@ slider_box = oj.HCCStatic.Div(
 # ============================== switch ==============================
 
 with writer_ctx:
-    with SCUI.Switch(classes="w-[400px]", checked=True) as switch_box:
+    with SCUI.Switch(extra_classes="", checked=True) as switch_box:
         pass
     
 
@@ -604,7 +635,7 @@ with writer_ctx:
             
             with SCUI.Table.Row():
                 
-                with SCUI.Table.Head(classes="w-[100px]"):
+                with SCUI.Table.Head(extra_classes="w-[100px]"):
                     with oj.PD.Prose(text="Invoice"):
                         pass
                 
@@ -706,7 +737,7 @@ textarea_box = oj.HCCStatic.Div(
 with writer_ctx:
     with SCUI.Tooltip() as tooltip_box: 
         with SCUI.Tooltip.Trigger():
-            with oj.PD.Prose(text="Hover"):
+            with SCUI.Button(text="Hover", variant="outline", key="tooltip_btn"):
                 pass
         
         with SCUI.Tooltip.Content():

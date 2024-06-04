@@ -3,7 +3,7 @@ import ofjustpy as oj
 oj.set_style("un")
 from hyperui_plugin.sideMenu import  (Simple as SimpleSideMenu,
                                                 )
-from shadcnui_component_library import (alert_box,
+from .shadcnui_component_library import (alert_box,
                                         accordion_box,
                                         alertdialog_box,
                                         avatar_box,
@@ -25,7 +25,7 @@ from shadcnui_component_library import (alert_box,
                                         separator_box,
                                         sheet_box,
                                         skeleton_box,
-                                        slider_box,
+                                        #slider_box,
                                         switch_box,
                                         table_box,
                                         textarea_box,
@@ -63,42 +63,48 @@ with oj.uictx("tlc") as tlctx:
     sideMenu.add_flat_item("separator", "Separator", value="Separator", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("sheet", "Sheet", value="Sheet", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("skeleton", "Skeleton", value="Skeleton", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("slider", "Slider", value="Slider", on_click=on_hui_comp_selected)
+    # bug in slider
+    # sideMenu.add_flat_item("slider", "Slider", value="Slider", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("switch", "Switch", value="Switch", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("table", "Table", value="Table", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("textarea", "TextArea", value="TextArea", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("tooltip", "Tooltip", value="Tooltip", on_click=on_hui_comp_selected)
-    comp_deck_box = oj.Mutable.StackD(key="comp_deck_box", childs=[alert_box,
-                                                                   accordion_box,
-                                                                   alertdialog_box,
-                                                                   avatar_box,
-                                                                   breadcrumb_box,
-                                                                   calendar_box,
-                                                                   carousel_box,
-                                                                   checkbox_box,
-                                                                   collapsible_box,
-                                                                   dialog_box,
-                                                                   drawer_box,
-                                                                   dropdownmenu_box,
-                                                                   hovercard_box,
-                                                                   input_box,
-                                                                   menubar_box,
-                                                                   resizable_box,
-                                                                   scrollarea_box,
-                                                                   select_box,
-                                                                   separator_box,
-                                                                   sheet_box,
-                                                                   skeleton_box,
-                                                                   #slider_box,
-                                                                   switch_box,
-                                                                   table_box,
-                                                                   textarea_box,
-                                                                   tooltip_box
-                                                                   ],
+    comp_deck_box = oj.Mutable.StackD(key="comp_deck_box",
+                                      childs=[alert_box,
+                                              accordion_box,
+                                              alertdialog_box,
+                                              avatar_box,
+                                              breadcrumb_box,
+                                              calendar_box,
+                                              carousel_box,
+                                              checkbox_box,
+                                              collapsible_box,
+                                              dialog_box,
+                                              drawer_box,
+                                              dropdownmenu_box,
+                                              hovercard_box,
+                                              input_box,
+                                              menubar_box,
+                                              resizable_box,
+                                              scrollarea_box,
+                                              select_box,
+                                              separator_box,
+                                              sheet_box,
+                                              skeleton_box,
+                                              #slider_box,
+                                              switch_box,
+                                              table_box,
+                                              textarea_box,
+                                              tooltip_box
+                                              ],
                                       height_anchor_key="Alerts",
                                       )
     
-comp_display_box = oj.HCCMutable.Halign(comp_deck_box)
+comp_display_box = oj.HCCMutable.Valign(
+    oj.HCCMutable.Halign(comp_deck_box),
+    twsty_tags=[jc.center]
+    )
+
 
 endpoint = oj.create_endpoint("Shadcn",
                      
@@ -108,11 +114,12 @@ endpoint = oj.create_endpoint("Shadcn",
                                                         twsty_tags=[mr/x/auto]
                                                         )
 
-                                        ],
-                                )
+                                                  ],
+                                        )
                    ],
-                              title="Interactive Webpage"
+                              title="ShadcnUI component library",
+                              body_classes="font-geist"
                               )
 
-oj.add_jproute("/", endpoint)
+oj.add_jproute("/shadcnui", endpoint)
     

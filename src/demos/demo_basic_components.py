@@ -27,7 +27,7 @@ def stubs():
                                 oj.AC.Button(key="mybtn",
                                              value="myval",
                                              text="Click me ",
-                                             pcp=[bg/blue/"100/50"],
+                                             twsty_tags=[bg/blue/"100/50"],
                                              on_click =  on_btn_click
                                              )
                              ),

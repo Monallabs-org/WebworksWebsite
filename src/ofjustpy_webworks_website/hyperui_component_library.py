@@ -1,6 +1,7 @@
 from hyperui_plugin.alerts import (Popup, PopupWithAction, Content, WarningContent)
 import ofjustpy as oj
-from ofjustpy import icons
+from ofjustpy.icons import FontAwesomeIcon
+
 from py_tailwind_utils import *
 
 # ============================== popups ==============================
@@ -27,10 +28,18 @@ alert_box = oj.HCCStatic.Div(key="Alerts", childs=[alert_popup,
 # ============================== badges ==============================
 from hyperui_plugin.badges import Badge
 
-from ofjustpy.icons import Icon_EuroCurrency
 simple_badge = Badge("Live")
-icon_badge = Badge( icon = Icon_EuroCurrency)
-icon_label_badge = Badge(label = "hello", icon = Icon_EuroCurrency)
+icon_badge = Badge( icon = FontAwesomeIcon(label="faEuroSign",
+                            size="1x",
+                                           fixedWidth=True,
+                                           classes="w-5 h-5",
+                                           )
+                   )
+icon_label_badge = Badge(label = "hello", icon = FontAwesomeIcon(label="faEuroSign",
+                            size="1x",
+                                                                 fixedWidth=True, classes="w-5 h-5",),
+                         
+                         )
 
 label_badge_crossbtn = Badge(label = "hello")
 def on_click(dbref, msg, to_ms):
@@ -76,9 +85,14 @@ btn_container.add_button(key="bbtn", text="Click me 2")
 btn_container.add_button(key="cbtn", text="Click me 3")
 
 btn_container_icon =  buttongroups.WithIcons()
-btn_container_icon.add_button("iabtn", "Edit", icons.Icon_Edit)
-btn_container_icon.add_button("ibbtn", "View", icons.Icon_View)
-btn_container_icon.add_button("icbtn", "Delete", icons.Icon_Delete)
+
+btn_container_icon.add_button("iabtn", "Edit", FontAwesomeIcon(label="faEdit", mdi_label='note-edit', classes="w-5 h-5")
+
+                              )
+btn_container_icon.add_button("ibbtn", "View", FontAwesomeIcon(label="faEye", classes="w-5 h-5")
+                              )
+btn_container_icon.add_button("icbtn", "Delete", FontAwesomeIcon(label="faTrash", classes="w-5 h-5")
+                              )
 
 
 buttongroups_box = oj.HCCStatic.StackV(key="Buttongroups", childs = [oj.PC.Halign(btn_container),

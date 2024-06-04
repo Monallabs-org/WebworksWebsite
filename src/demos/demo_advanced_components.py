@@ -128,11 +128,11 @@ def on_btn_click(dbref,msg):
 
 span1  = oj.AC.Textarea(key="targetSpan1",
                         text="a text area with lots of lots of text",
-                        pcp=[bg/green/1, pd/2]
+                        twsty_tags=[bg/green/1, pd/2]
                      )
 span2  = oj.AC.Textarea(key="targetSpan2",
                        text="another text area with lots of lots of text",
-                       pcp=[bg/blue/1, pd/2]
+                       twsty_tags=[bg/blue/1, pd/2]
                        )
 
             

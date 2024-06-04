@@ -3,7 +3,7 @@ import ofjustpy as oj
 oj.set_style("un")
 from hyperui_plugin.sideMenu import  (Simple as SimpleSideMenu,
                                                 )
-from hyperui_component_library import (alert_box,
+from .hyperui_component_library import (alert_box,
                                        badges_box,
                                        breadcrumbs_box,
                                        buttongroups_box,
@@ -59,7 +59,7 @@ with oj.uictx("tlc") as tlctx:
 
     sideMenu.add_flat_item("alerts", "Alerts", value="Alerts", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("badges", "Badges", value="Badges", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("breadcrumbs", "Breadcrumbs", value="Breadcrumbs", on_click=on_hui_comp_selected)
+    # sideMenu.add_flat_item("breadcrumbs", "Breadcrumbs", value="Breadcrumbs", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("buttongroups", "Buttongroups", value="Buttongroups", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("detailslist", "Detailslist", value="Detailslist", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("dividers", "Dividers", value="Dividers", on_click=on_hui_comp_selected)
@@ -70,8 +70,8 @@ with oj.uictx("tlc") as tlctx:
     sideMenu.add_flat_item("headers", "Headers", value="Headers", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("inputs", "Inputs", value="Inputs", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("loginforms", "LoginForms", value="LoginForms", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("mediaalerts", "MediaAlerts", value="MediaAlerts", on_click=on_hui_comp_selected)
-    sideMenu.add_flat_item("pagination", "Pagination", value="Pagination", on_click=on_hui_comp_selected)
+    # sideMenu.add_flat_item("mediaalerts", "MediaAlerts", value="MediaAlerts", on_click=on_hui_comp_selected)
+    # sideMenu.add_flat_item("pagination", "Pagination", value="Pagination", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("selects", "Selects", value="Selects", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("sideMenu", "SideMenu", value="SideMenu", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("Stats", "Stats", value="Stats", on_click=on_hui_comp_selected)
@@ -80,7 +80,7 @@ with oj.uictx("tlc") as tlctx:
     sideMenu.add_flat_item("tabs", "Tabs", value="Tabs", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("textarea", "Textarea", value="Textarea", on_click=on_hui_comp_selected)
 
-    sideMenu.add_flat_item("toggles", "Toggles", value="Toggles", on_click=on_hui_comp_selected)
+    # sideMenu.add_flat_item("toggles", "Toggles", value="Toggles", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("verticalmenu", "VerticalMenu", value="VerticalMenu", on_click=on_hui_comp_selected)
 
     ecom_menu_group = sideMenu.add_group_item("eCommerce")
@@ -114,7 +114,7 @@ with oj.uictx("tlc") as tlctx:
 
     marketing_menu_group.add_flat_item("MarketingHeader", "Header", value="MarketingHeader", on_click=on_hui_comp_selected)
 
-    marketing_menu_group.add_flat_item("MarketingPopups", "Popups", value="MarketingPopups", on_click=on_hui_comp_selected)
+    # marketing_menu_group.add_flat_item("MarketingPopups", "Popups", value="MarketingPopups", on_click=on_hui_comp_selected)
     marketing_menu_group.add_flat_item("MarketingPricings", "MarketingPricings", value="MarketingPricings", on_click=on_hui_comp_selected)
     marketing_menu_group.add_flat_item("MarketingSections", "Sections", value="MarketingSections", on_click=on_hui_comp_selected)
     marketing_menu_group.add_flat_item("MarketingTestimonal", "Testimonal", value="MarketingTestimonal", on_click=on_hui_comp_selected)
@@ -173,23 +173,30 @@ with oj.uictx("tlc") as tlctx:
 
                       )
 
-comp_display_box = oj.HCCMutable.Halign(comp_deck_box)
+
+comp_display_box = oj.HCCMutable.Valign(
+    oj.HCCMutable.Halign(comp_deck_box,
+                         twsty_tags=[W/full]
+                         )
+
+)
 
 
 
-
-endpoint = oj.create_endpoint("Interactive_Webpage",
+endpoint = oj.create_endpoint("hyperui_component_ui_library",
                      
          childs = [oj.HCCMutable.StackH(childs = [sideMenu,
-                                          oj.HCCMutable.Container(childs=[comp_display_box
-                                                                          ],
-                                                        twsty_tags=[mr/x/auto]
-                                                        )
+                                                  oj.HCCMutable.Container(childs=[comp_display_box
+                                                                                  ],
+                                                                          twsty_tags=[mr/x/auto]
+                                                                          )
 
-                                        ],
-                                )
+                                                  ],
+                                        )
                    ],
-                              title="Interactive Webpage"
+                              title="HyperUI component library",
+                              body_classes="font-geist",
+                              #rendering_type="SSR"
                               )
 
-oj.add_jproute("/", endpoint)
+oj.add_jproute("/hyperui", endpoint)

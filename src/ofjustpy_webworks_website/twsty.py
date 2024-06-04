@@ -8,7 +8,7 @@ h3 = []  # "prose", "prose-2xl"
 
 h4 = []  # "prose", "prose-2xl"
 
-h5 = [fz.lg,  fw.medium, mr / sl / 2, fc/gray/4]  # "prose", "prose-2xl"
+h5 = [fz.lg,  fw.medium, mr / sl / 2, fc/gray/400]  # "prose", "prose-2xl"
 
 h6 = []  # "prose", "prose-2xl"
 

@@ -3,18 +3,27 @@ from hyperui_plugin.marketing.faqs import  (BackgroundAccentBorder,
 from py_tailwind_utils import *
 
 import ofjustpy as oj
-import twsty
+from . import twsty
 
-from overview_panes_extended import feature_scalable_efficient_infobox, feature_uictx_programmability_infobox
+from .overview_panes_extended import (feature_scalable_efficient_infobox,
+                                     feature_uictx_programmability_infobox,
+                                     feature_ui_library_infobox
+
+                                     )
+
+from . import skeletonui_component_library_showcase
+from . import shadcnui_component_library_showcase
+from . import hyperui_component_library_showcase
+
 app = oj.load_app()
 from html_writer.macro_module import macros, writer_ctx
 
 # ============================ top matter ============================
 with oj.TwStyCtx(twsty):
     with oj.uictx("topmatter"):
-        title = oj.PC.StackV(childs = [oj.PD.Title("Ofjustpy", twsty_tags=[fc/rose/5]),
+        title = oj.PC.StackV(childs = [oj.PD.Title("Ofjustpy", twsty_tags=[fc/rose/500]),
                                        oj.PD.SubTitle("An easy-to-use yet full-featured web framework in Python",
-                                                      twsty_tags=[fc/pink/3]
+                                                      twsty_tags=[fc/pink/300]
                                                       )
                                        ]
                              )
@@ -65,7 +74,7 @@ fct = format_code(code)
 
 
 with writer_ctx:
-    with Div(classes="space-y-4 w-full") as overview_box:
+    with Div(classes="space-y-4 w-2/3") as overview_box:
 
         pass
 
@@ -73,43 +82,44 @@ with writer_ctx:
 with writer_ctx:
     with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_inline_html_infobox:
 
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-50 p-4 text-gray-900"):
+        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
             with Div(classes="flex-1 flex justify-center"):
 
                 with H2(classes="font-medium", text="📌 Effortless HTML: No-Templates, No-Boilerplate, Just Clean Pythonic Code"):
                     pass
-            with Icon_Plus():
+            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
                 pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 p-2") as desc:
-            with Div(classes="text-left ml-2"):
-
-                with H2(text="Author HTML inline within Python code", classes="text-lg font-medium text-gray-900"):
+        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
+            with Div(classes="text-center"):
+                with H2(text="Author HTML inline within Python code", classes="font-bold tracking-tight text-2xl"):
                     pass
 
+            with Div(classes="flex justify-center mt-8"):
+                with Ul(classes="space-y-2 text-balance text-lg text-slate-700", extra_classes="tracking-tight") as desc_box:
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Eliminates need for templates ", classes=""):
+                            pass
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Low boilerplate crud", classes=""):
+                            pass
 
-            with Ul(classes="ml-4 mt-4 space-y-2") as desc_box:
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Eliminates need for templates ", classes="text-gray-700"):
-                        pass
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Low boilerplate crud", classes="text-gray-700"):
-                        pass
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Easy to read and maintain", classes=""):
+                            pass                                        
 
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Easy to read and maintain", classes="text-gray-700"):
-                        pass                                        
 
-            with Div(classes="text-left mt-4 ml-4"):
-                with H2(text="Code Demo: A sample html using ofjustpy", classes="font-medium text-gray-900"):
+            with Div(classes="mt-8 space-y-2"):            
+                with Div(classes="text-center"):
+                    with H2(text="Code Demo: A sample html using ofjustpy", classes="text-xl ", extra_classes="tracking-tight"):
+                        pass
+                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
                     pass
-            with Div(classes="flex justify-center mt-2 text-sm overflow-auto") as code_block_container:
-                pass
                 
                 
 code_block_container.components.append(fct)
@@ -120,22 +130,22 @@ overview_box.components.append(feature_inline_html_infobox)
 # ============================= feature 2 ============================
 with writer_ctx:
     with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_event_handling_infobox:
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-50 p-4 text-gray-900"):
+        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
             with Div(classes="flex-1 flex justify-center"):
                 with H2(classes="font-medium", text="📌 Straightforward event handling"):
                     pass
-            with Icon_Plus():
+            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
                 pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 p-2") as desc:
-            with Div(classes="text-left ml-2"):
+        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
+            with Div(classes="text-center"):
 
-                with H2(text="Browser event are handled from within Python", classes="text-lg font-medium text-gray-900"):
+                with H2(text="Browser event are handled from within Python", classes="font-bold tracking-tight text-2xl"):
                     pass
 
-            with Div(classes="text-left mt-4 ml-4"):
-                with H2(text="Code Demo: handling browser events", classes="font-medium text-gray-900"):
+            with Div(classes="flex flex-col justify-center mt-8"):
+                with H2(text="Code Demo: handling browser events", classes="text-balance text-center text-lg text-slate-700"):
                         pass
-                with Div(classes="flex justify-center mt-2 text-xm overflow-auto") as code_block_container:
+                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
                     pass
 
 
@@ -149,12 +159,6 @@ with writer_ctx:
        with Button(key="mybtn", on_click=on_click):
             pass
 
-endpoint = oj.create_endpoint("event_handling",
-                              childs = [comp_box]
-                              ),
-                              title="Event handling"
-                              )
-oj.add_jproute("/", endpoint)
 """   
 fct = format_code(code)
 code_block_container.components.append(fct)
@@ -165,40 +169,42 @@ overview_box.components.append(feature_event_handling_infobox)
 # ============================= feature 3 ============================
 with writer_ctx:
     with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_interactive_ui_infobox:
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-50 p-4 text-gray-900"):
+        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
             with Div(classes="flex-1 flex justify-center"):
                 with H2(classes="font-medium", text="📌 Easy Interactive UI "):
                     pass
-            with Icon_Plus():
+            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
                 pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 p-2") as desc:
-            with Div(classes="text-left ml-2"):
+        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
+            with Div(classes="text-center"):
 
-                with H2(text="Change UI state using simple python expressions", classes="text-lg font-medium text-gray-900"):
+                with H2(text="Change UI state using simple python expressions", classes="font-bold tracking-tight text-2xl"):
                     pass
 
-            with Ul(classes="ml-4 mt-4 space-y-2") as desc_box:
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Tailwind utility classes are first class objects", classes="text-gray-700"):
-                        pass
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Allows semantics based update and merge over tailwind classes", classes="text-gray-700"):
-                        pass
-                with Li(classes="flex items-center gap-1"):
-                    with Icon_RightArrow():
-                        pass
-                    with Span(text="Updated classes are transparently shipped to frontend to update the UI", classes="text-gray-700"):
-                        pass
+            with Div(classes="flex justify-center mt-8"):
+                with Ul(classes="space-y-2 text-balance text-lg text-slate-700 tracking-tight") as desc_box:
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Tailwind utility classes are first class objects", classes=""):
+                            pass
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Allows semantics based update and merge over tailwind classes", classes=""):
+                            pass
+                    with Li(classes="flex items-center gap-1"):
+                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
+                            pass
+                        with Span(text="Updated classes are transparently shipped to frontend to update the UI", classes=""):
+                            pass
                     
 
-            with Div(classes="text-left mt-4 ml-4"):
-                with H2(text="Code Demo: Interactive UI -- Low boilerplate; no explicit client-server communication directive required", classes="font-medium text-gray-900"):
-                        pass
-                with Div(classes="flex justify-center mt-2 text-sm overflow-auto") as code_block_container:
+            with Div(classes="mt-8 space-y-2"):
+                with Div(classes="text-center"):
+                    with H2(text="Code Demo: Interactive UI via simple expressions", classes="text-xl tracking-tight"):
+                            pass
+                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
                     pass
 
 
@@ -212,7 +218,8 @@ fct = format_code(code)
 code_block_container.components.append(fct)
 overview_box.components.append(feature_interactive_ui_infobox)
 overview_box.components.append(feature_scalable_efficient_infobox)
-overview_box.components.append(feature_uictx_programmability_infobox) 
+overview_box.components.append(feature_uictx_programmability_infobox)
+overview_box.components.append(feature_ui_library_infobox) 
 # ================================ end ===============================
 # TODO: in the overview page --> provide hyperlink to user_manual
 # writer context should support for loop
@@ -241,7 +248,11 @@ overview_box.components.append(feature_uictx_programmability_infobox)
 # TODO: pricings is missing details
 # for testimonials we need slider-- some combination of tailwind and svelte
 # &mdash isn't working for html
-
+# SKUI.Ratings should clear fully
+#. SKUI.toggle bg/active doesn't work
+#. SKUI.Listbox doesn't work
+#. SKDUI.Accordion is not working
+#. Be very mindful about StackD and hieght anchor. basically the use of relative, absolute ..wasted half a day on it.  
 # -->
 # for and if block in writer_ctx is coming soon.
 # AttributeError: 'WebPage_MutableShell' object has no attribute 'remove_twsty_tags'
@@ -288,7 +299,19 @@ overview_box.components.append(feature_uictx_programmability_infobox)
 #   <svelte:element this=TabGroup active="border-b-4 border-surface-50-900-token">
 #      {console.log("now rendering tabgroup")}
 #   </svelte:element> : this produces wierd html as <tabgroup ...> while it should be <div>
-  
+
+#   centering of optmizing of overview not happening
+
+# In hyperui.stats chartup and chartdown has been removed with questionmark...needs to use materialui to bring it back
+
+# <ol><li></li></ol> when rendering from bundler is introducing ::marker -- while when when using css.tailwind.com src doens't
+# using ul for now.
+
+# unable to control width of a component using max-w-screen-md, xl, etc.
+
+#. twmax, twmin do not use as last keywork twmax/W/twmax
+
+# tailwind tags sm, md, xl, should belong to same class
 overview_panel = oj.PD.Subsection("Key Features", overview_box)
 endpoint = oj.create_endpoint("overview",
                               childs = [oj.PC.Container(childs=[top_panel, overview_panel
@@ -297,8 +320,10 @@ endpoint = oj.create_endpoint("overview",
                                                         )
 
                                         ],
-                              title="Overview"
+                              body_classes="font-geist",
+                              title="Overview",
+                              skeleton_data_theme="modern",
+                              #rendering_type="SSR"
                               )
 oj.add_jproute("/", endpoint)
-
 

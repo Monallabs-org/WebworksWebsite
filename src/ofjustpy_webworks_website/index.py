@@ -3,9 +3,9 @@ from ofjustpy_components.component_mouseover_slideshow import SlideShow
 from py_tailwind_utils import *
 
 with oj.uictx("topmatter"):
-    title = oj.PC.StackV(childs = [oj.PC.Title("Ofjustpy", twsty_tags=[fc/rose/5]),
+    title = oj.PC.StackV(childs = [oj.PC.Title("Ofjustpy", twsty_tags=[fc/rose/500]),
                                    oj.PC.SubTitle("An easy-to-use yet full-featured web framework in Python",
-                                                  twsty_tags=[fc/pink/3]
+                                                  twsty_tags=[fc/pink/300]
                                                   )
                                    ]
                          )
