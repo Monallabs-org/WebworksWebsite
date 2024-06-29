@@ -10,7 +10,7 @@ logging.basicConfig(filename="ofjustpy_webworks_monallabs_in.log",
 
 import macropy.activate
 import ofjustpy as oj
-#from . import overview_revised
-from . import techstack_and_demo_page
+from . import overview_revised
+#from . import techstack_and_demo_page
 app = oj.load_app()
 

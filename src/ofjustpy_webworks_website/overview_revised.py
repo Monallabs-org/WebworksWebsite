@@ -5,21 +5,25 @@ from py_tailwind_utils import *
 import ofjustpy as oj
 from . import twsty
 
-from .overview_panes_extended import (feature_scalable_efficient_infobox,
-                                     feature_uictx_programmability_infobox,
-                                     feature_ui_library_infobox
 
-                                     )
 
 from . import skeletonui_component_library_showcase
 from . import shadcnui_component_library_showcase
 from . import hyperui_component_library_showcase
 import hyperui_plugin as HyUI
+from ofjustpy_plugins import format_code
 app = oj.load_app()
 from html_writer.macro_module import macros, writer_ctx
 
 start_btn = HyUI.button_simpleAndRevealOffsetBorderOnHover(text="Start")
+from .overview_feature_inline_html import feature_inline_html_infobox
+from .overview_feature_event_handling import feature_event_handling_infobox
+from .overview_feature_interactive_ui import feature_interactive_ui_infobox
+from .overview_feature_scalable_efficient import feature_scalable_efficient_infobox
 
+from .overview_feature_uictx_programmability import feature_uictx_programmability_infobox
+
+from .overview_feature_ui_library import feature_ui_library_infobox
 # ============================ top matter ============================
 with oj.TwStyCtx(twsty):
     with oj.uictx("topmatter"):
@@ -30,194 +34,19 @@ with oj.TwStyCtx(twsty):
                                        ]
                              )
 
-        # Its not possible to give an overview that will do justice
-
-        # overview = oj.PC.Subsection("Overview",
-        #                             oj.PC.Halign(oj.PC.Prose(text="Ofjustpy is a Python based webframework to seamlessly construct web-based applications and websites with ease. Leveraging Python's powerful language constructs and various libraries and utilities, this framework offers an extensive array of tools and APIs that dramatically simplify the process of developing sophisticated webpages.",
-        #                                    twsty_tags=[max/W/"prose", fz.xl]
-        #                                    )
-        #                             )
-        #                     )
-
-
         divider = oj.PC.Hr(twsty_tags=[mr/sb/4])
 
         top_panel = oj.PC.StackV(childs=[title, divider])
 
     
 
-# """Effortless HTML with Ofjustpy: No-Templates, No-Boilerplate, Just Clean Pythonic Code:
-
-
-# Author HTML inline within Python code, 
-# """
-
-# "eliminating the need for additional templates, using Pythonic custom DSL.  Resulting html code is clean and readable, free from boilerplate, facilitating ease of maintenance. An example HTML written in Ofjustpy Python DSL"
-oj.set_style("un")
-
-from ofjustpy_plugins import format_code
-code = """
-with Article(classes="overflow-hidden rounded-lg shadow transition hover:shadow-lg") as comp_box:
-    with Img(src=image_url, alt="Office", classes="h-56 w-full object-cover"):
-        pass
-
-    with Div(classes="bg-white p-4 sm:p-6"):
-        with Time(classes="block text-xs text-gray-500", datetime=date, text=date):
-            pass
-
-        with A(href=link):
-            with H3(classes="mt-0.5 text-lg text-gray-900", text=title):
-                pass
-
-        with P(classes="mt-2 line-clamp-3 text-sm/relaxed text-gray-500", text=content):
-            pass
-"""
-fct = format_code(code)
-
 
 with writer_ctx:
     with Div(classes="space-y-4 w-2/3") as overview_box:
 
         pass
-
-# ============================= feature 1 ============================
-with writer_ctx:
-    with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_inline_html_infobox:
-
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
-            with Div(classes="flex-1 flex justify-center"):
-
-                with H2(classes="font-medium", text="📌 Effortless HTML: No-Templates, No-Boilerplate, Just Clean Pythonic Code"):
-                    pass
-            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
-                pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
-            with Div(classes="text-center"):
-                with H2(text="Author HTML inline within Python code", classes="font-bold tracking-tight text-2xl"):
-                    pass
-
-            with Div(classes="flex justify-center mt-8"):
-                with Ul(classes="space-y-2 text-balance text-lg text-slate-700", extra_classes="tracking-tight") as desc_box:
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Eliminates need for templates ", classes=""):
-                            pass
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Low boilerplate crud", classes=""):
-                            pass
-
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Easy to read and maintain", classes=""):
-                            pass                                        
-
-
-            with Div(classes="mt-8 space-y-2"):            
-                with Div(classes="text-center"):
-                    with H2(text="Code Demo: A sample html using ofjustpy", classes="text-xl ", extra_classes="tracking-tight"):
-                        pass
-                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
-                    pass
-                
-                
-code_block_container.components.append(fct)
 overview_box.components.append(feature_inline_html_infobox)
-
-# ================================ end ===============================
-
-# ============================= feature 2 ============================
-with writer_ctx:
-    with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_event_handling_infobox:
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
-            with Div(classes="flex-1 flex justify-center"):
-                with H2(classes="font-medium", text="📌 Straightforward event handling"):
-                    pass
-            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
-                pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
-            with Div(classes="text-center"):
-
-                with H2(text="Browser event are handled from within Python", classes="font-bold tracking-tight text-2xl"):
-                    pass
-
-            with Div(classes="flex flex-col justify-center mt-8"):
-                with H2(text="Code Demo: handling browser events", classes="text-balance text-center text-lg text-slate-700"):
-                        pass
-                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
-                    pass
-
-
-code = """def on_click(dbref, msg, to_ms):
-   \"\"\"
-   handle click event on component dbref
-   \"\"\"
-   pass
-with writer_ctx:
-   with Div():
-       with Button(key="mybtn", on_click=on_click):
-            pass
-
-"""   
-fct = format_code(code)
-code_block_container.components.append(fct)
 overview_box.components.append(feature_event_handling_infobox)
-
-# ================================ end ===============================
-
-# ============================= feature 3 ============================
-with writer_ctx:
-    with Details(classes="group", extra_classes="[&_summary::-webkit-details-marker]:hidden") as feature_interactive_ui_infobox:
-        with Summary(classes="flex cursor-pointer items-center justify-between gap-1.5 bg-pink-100 p-4 text-gray-900 rounded-t-lg"):
-            with Div(classes="flex-1 flex justify-center"):
-                with H2(classes="font-medium", text="📌 Easy Interactive UI "):
-                    pass
-            with FontAwesomeIcon(label="faPlus", classes="w-5 h-5"):
-                pass
-        with Div(classes="bg-pink-50/50 border border-gray-200 rounded-b-lg") as desc:
-            with Div(classes="text-center"):
-
-                with H2(text="Change UI state using simple python expressions", classes="font-bold tracking-tight text-2xl"):
-                    pass
-
-            with Div(classes="flex justify-center mt-8"):
-                with Ul(classes="space-y-2 text-balance text-lg text-slate-700 tracking-tight") as desc_box:
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Tailwind utility classes are first class objects", classes=""):
-                            pass
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Allows semantics based update and merge over tailwind classes", classes=""):
-                            pass
-                    with Li(classes="flex items-center gap-1"):
-                        with FontAwesomeIcon(label="faArrowRight", classes="w-5 h-5"):
-                            pass
-                        with Span(text="Updated classes are transparently shipped to frontend to update the UI", classes=""):
-                            pass
-                    
-
-            with Div(classes="mt-8 space-y-2"):
-                with Div(classes="text-center"):
-                    with H2(text="Code Demo: Interactive UI via simple expressions", classes="text-xl tracking-tight"):
-                            pass
-                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
-                    pass
-
-
-code = """def on_click(dbref, msg, to_ms):
-    ms_dbref = to_ms(dbref)
-    # change background color to green-500 and font size to text-xl
-    ms_dbref.add_twsty_tags(bg/green/5, fz.xl)
-    pass
-"""   
-fct = format_code(code)
-code_block_container.components.append(fct)
 overview_box.components.append(feature_interactive_ui_infobox)
 overview_box.components.append(feature_scalable_efficient_infobox)
 overview_box.components.append(feature_uictx_programmability_infobox)
