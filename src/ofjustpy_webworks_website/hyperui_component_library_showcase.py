@@ -49,14 +49,24 @@ from .hyperui_component_library import (alert_box,
                                        )
 app = oj.load_app()
 sideMenu = SimpleSideMenu("HyperUI components")
-with oj.uictx("tlc") as tlctx:
+with oj.uictx("Hyper_tlc") as tlctx:
+    
     def on_hui_comp_selected(dbref, msg, to_ms):
-        print("button clicked")
-        print (dbref.value)
+        print(tlctx.alerts.id)
         comp_deck_box_ms = to_ms(tlctx.comp_deck_box)
+        comp_deck_box_ms.bring_to_front(tlctx.alerts.id)
         comp_deck_box_ms.bring_to_front(f"/{dbref.value}")
         pass
 
+    async def on_page_ready(dbref, msg, to_ms):
+        comp_deck_box_ms = to_ms(tlctx.comp_deck_box)
+        # there is some bug in rendering vertical menu button
+        # this is a work around to reset it on page_reload
+        comp_deck_box_ms.bring_to_front("/Alerts")
+
+
+        pass
+    
     sideMenu.add_flat_item("alerts", "Alerts", value="Alerts", on_click=on_hui_comp_selected)
     sideMenu.add_flat_item("badges", "Badges", value="Badges", on_click=on_hui_comp_selected)
     # sideMenu.add_flat_item("breadcrumbs", "Breadcrumbs", value="Breadcrumbs", on_click=on_hui_comp_selected)
@@ -196,7 +206,8 @@ endpoint = oj.create_endpoint("hyperui_component_ui_library",
                    ],
                               title="HyperUI component library",
                               body_classes="font-geist",
-                              #rendering_type="SSR"
+                              #rendering_type="SSR",
+                              page_ready = on_page_ready
                               )
 
 oj.add_jproute("/hyperui", endpoint)

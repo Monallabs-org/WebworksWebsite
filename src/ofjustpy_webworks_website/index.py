@@ -2,7 +2,11 @@ import ofjustpy as oj
 from ofjustpy_components.component_mouseover_slideshow import SlideShow
 from py_tailwind_utils import *
 
+import hyperui_plugin as HyUI
+
 with oj.uictx("topmatter"):
+    start_btn = HyUI.button_simpleAndRevealOffsetBorderOnHover(text="Start")
+    
     title = oj.PC.StackV(childs = [oj.PC.Title("Ofjustpy", twsty_tags=[fc/rose/500]),
                                    oj.PC.SubTitle("An easy-to-use yet full-featured web framework in Python",
                                                   twsty_tags=[fc/pink/300]
@@ -261,7 +265,7 @@ app = oj.load_app()
 # use cached optimized html rendering for responsive static pages. 
 from webpage_html_rendering_cache_optimization  import create_endpoint
 wp_index = create_endpoint(key="webworks_index",
-                              childs = [tlc
+                              childs = [tlc, start_btn
                                         ],
                               title="Webworks By Monallabs",
                               

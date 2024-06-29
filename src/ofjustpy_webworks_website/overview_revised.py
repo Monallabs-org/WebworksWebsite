@@ -14,9 +14,11 @@ from .overview_panes_extended import (feature_scalable_efficient_infobox,
 from . import skeletonui_component_library_showcase
 from . import shadcnui_component_library_showcase
 from . import hyperui_component_library_showcase
-
+import hyperui_plugin as HyUI
 app = oj.load_app()
 from html_writer.macro_module import macros, writer_ctx
+
+start_btn = HyUI.button_simpleAndRevealOffsetBorderOnHover(text="Start")
 
 # ============================ top matter ============================
 with oj.TwStyCtx(twsty):
@@ -314,7 +316,7 @@ overview_box.components.append(feature_ui_library_infobox)
 # tailwind tags sm, md, xl, should belong to same class
 overview_panel = oj.PD.Subsection("Key Features", overview_box)
 endpoint = oj.create_endpoint("overview",
-                              childs = [oj.PC.Container(childs=[top_panel, overview_panel
+                              childs = [start_btn, oj.PC.Container(childs=[top_panel, overview_panel
                                                                 ],
                                                         twsty_tags=[mr/x/auto]
                                                         )
@@ -322,7 +324,7 @@ endpoint = oj.create_endpoint("overview",
                                         ],
                               body_classes="font-geist",
                               title="Overview",
-                              skeleton_data_theme="modern",
+                              skeleton_data_theme="seafoam",
                               #rendering_type="SSR"
                               )
 oj.add_jproute("/", endpoint)
