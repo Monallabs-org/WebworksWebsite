@@ -205,7 +205,8 @@ endpoint = oj.create_endpoint("Skeleton-ComponentUI",
                                         body_box
                                         ],
                               title="Skeleton Component UI",
-                              page_ready = on_page_ready
+                              page_ready = on_page_ready,
+                              csr_bundle_dir="skeletonui"
                               )
 
 oj.add_jproute("/skeletonUI", endpoint)

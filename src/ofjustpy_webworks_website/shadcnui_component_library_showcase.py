@@ -127,7 +127,8 @@ endpoint = oj.create_endpoint("Shadcn",
                    ],
                               title="ShadcnUI component library",
                               body_classes="font-geist",
-                              page_ready = on_page_ready
+                              page_ready = on_page_ready,
+                              csr_bundle_dir="shadcnui"
                               )
 
 oj.add_jproute("/shadcnui", endpoint)

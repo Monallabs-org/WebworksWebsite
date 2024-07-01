@@ -52,7 +52,7 @@ sideMenu = SimpleSideMenu("HyperUI components")
 with oj.uictx("Hyper_tlc") as tlctx:
     
     def on_hui_comp_selected(dbref, msg, to_ms):
-        print(tlctx.alerts.id)
+
         comp_deck_box_ms = to_ms(tlctx.comp_deck_box)
         comp_deck_box_ms.bring_to_front(tlctx.alerts.id)
         comp_deck_box_ms.bring_to_front(f"/{dbref.value}")
@@ -207,6 +207,7 @@ endpoint = oj.create_endpoint("hyperui_component_ui_library",
                               title="HyperUI component library",
                               body_classes="font-geist",
                               #rendering_type="SSR",
+                              csr_bundle_dir = "hyperui", # dir under /static that contains bundle.iife.js and style.js
                               page_ready = on_page_ready
                               )
 

@@ -5,11 +5,6 @@ from py_tailwind_utils import *
 import ofjustpy as oj
 from . import twsty
 
-
-
-from . import skeletonui_component_library_showcase
-from . import shadcnui_component_library_showcase
-from . import hyperui_component_library_showcase
 import hyperui_plugin as HyUI
 from ofjustpy_plugins import format_code
 app = oj.load_app()
@@ -24,6 +19,8 @@ from .overview_feature_scalable_efficient import feature_scalable_efficient_info
 from .overview_feature_uictx_programmability import feature_uictx_programmability_infobox
 
 from .overview_feature_ui_library import feature_ui_library_infobox
+from .overview_ofjustpy_webapp_stack import about_ofjustpy_webapp_stack
+
 # ============================ top matter ============================
 with oj.TwStyCtx(twsty):
     with oj.uictx("topmatter"):
@@ -50,7 +47,9 @@ overview_box.components.append(feature_event_handling_infobox)
 overview_box.components.append(feature_interactive_ui_infobox)
 overview_box.components.append(feature_scalable_efficient_infobox)
 overview_box.components.append(feature_uictx_programmability_infobox)
-overview_box.components.append(feature_ui_library_infobox) 
+overview_box.components.append(feature_ui_library_infobox)
+# overview_box.childs.append(about_ofjustpy_webapp_stack)
+
 # ================================ end ===============================
 # TODO: in the overview page --> provide hyperlink to user_manual
 # writer context should support for loop
@@ -144,10 +143,16 @@ overview_box.components.append(feature_ui_library_infobox)
 
 # tailwind tags sm, md, xl, should belong to same class
 overview_panel = oj.PD.Subsection("Key Features", overview_box)
+
+from .panel_oj_about import about_panel
+
+
+
+
 endpoint = oj.create_endpoint("overview",
-                              childs = [start_btn, oj.PC.Container(childs=[top_panel, overview_panel
+                              childs = [oj.HCCMutable.Container(childs=[top_panel, overview_panel, about_panel
                                                                 ],
-                                                        twsty_tags=[mr/x/auto]
+                                                        twsty_tags=[mr/x/auto, space/y/4]
                                                         )
 
                                         ],
@@ -155,6 +160,12 @@ endpoint = oj.create_endpoint("overview",
                               title="Overview",
                               skeleton_data_theme="seafoam",
                               #rendering_type="SSR"
+                              csr_bundle_dir="overview_revised",
+                              head_html="""<script src="/static/hyperui/bundle.iife.js" defer></script>
+                              <script src="/static/shadcnui/bundle.iife.js" defer></script>
+                              <script src="/static/skeletonui/bundle.iife.js" defer></script>
+"""
+                              
                               )
 oj.add_jproute("/", endpoint)
 
