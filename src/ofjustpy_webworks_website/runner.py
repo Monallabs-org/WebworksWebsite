@@ -17,6 +17,7 @@ from . import overview_revised
 from . import hyperui_component_library_showcase
 from . import shadcnui_component_library_showcase
 from . import skeletonui_component_library_showcase
+from demos import demo_advanced_components
 
 app = oj.load_app()
 
