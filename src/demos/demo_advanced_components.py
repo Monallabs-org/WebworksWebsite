@@ -2,12 +2,15 @@ import ofjustpy as oj
 from py_tailwind_utils import *
 import ofjustpy_components as ojx
 from addict_tracking_changes import Dict
+import macropy.activate
 import json
 from ofjustpy_components.htmlcomponents import  BiSplitView, Paginate, Dockbar
 from ofjustpy_components.hierarchy_naviator import HierarchyNavigator
 
 #@oj.webpage_cache
-title = oj.PC.Title("Demo: Advanced capabilities")
+title = oj.PC.Title("Demo: Advanced capabilities",
+                    classes="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+                    )
 # ==================== slider example ====================
 def slider_select(dbref, msg, target_of):
     print("Slider selected")
@@ -122,50 +125,73 @@ paginate_container = oj.Mutable.Container(key = "paginate_container",
 
 
 # ============================ dock/undock ===========================
-def on_btn_click(dbref,msg):
-    pass
+# def on_btn_click(dbref,msg):
+#     pass
 
 
-span1  = oj.AC.Textarea(key="targetSpan1",
-                        text="a text area with lots of lots of text",
-                        twsty_tags=[bg/green/1, pd/2]
-                     )
-span2  = oj.AC.Textarea(key="targetSpan2",
-                       text="another text area with lots of lots of text",
-                       twsty_tags=[bg/blue/1, pd/2]
-                       )
+# span1  = oj.AC.Textarea(key="targetSpan1",
+#                         text="a text area with lots of lots of text",
+#                         twsty_tags=[bg/green/1, pd/2]
+#                      )
+# span2  = oj.AC.Textarea(key="targetSpan2",
+#                        text="another text area with lots of lots of text",
+#                        twsty_tags=[bg/blue/1, pd/2]
+#                        )
 
             
-dockbar  = Dockbar([span1, span2],
-                   ["Item1", "Item2" ],
-                   )
+# dockbar  = Dockbar([span1, span2],
+#                    ["Item1", "Item2" ],
+#                    )
 
-undock_btn_panel = oj.Halign(oj.HCCMutable.Div(key = "undock_btn_panel",
-                                     childs = dockbar.undock_btns.values(),
-                                     twsty_tags=[space/x/4]
-                                               ),
-                             content_type="mutable"
-                             )
-
-
-wrapped_item_panel = oj.Halign(oj.HCCMutable.Div(
-                                       childs = dockbar.wrapped_components.values(),
-                                       twsty_tags=[space/y/4]
-                                       ),
-                               content_type="mutable"
-                               )
+# undock_btn_panel = oj.Halign(oj.HCCMutable.Div(key = "undock_btn_panel",
+#                                      childs = dockbar.undock_btns.values(),
+#                                      twsty_tags=[space/x/4]
+#                                                ),
+#                              content_type="mutable"
+#                              )
 
 
-dock_undock_tlc = oj.Mutable.Div(key="dock_undock",
-                                       childs = [undock_btn_panel,
-                                                 wrapped_item_panel
-                                                 ],
-                                       twsty_tags=[space/y/4]
-                                       )
+# wrapped_item_panel = oj.Halign(oj.HCCMutable.Div(
+#                                        childs = dockbar.wrapped_components.values(),
+#                                        twsty_tags=[space/y/4]
+#                                        ),
+#                                content_type="mutable"
+#                                )
 
-dock_undock_container = oj.Mutable.Container(key="dock_undock_container",
-                                             childs = [dock_undock_tlc]
-                                             )
+
+# dock_undock_tlc = oj.Mutable.Div(key="dock_undock",
+#                                        childs = [undock_btn_panel,
+#                                                  wrapped_item_panel
+#                                                  ],
+#                                        twsty_tags=[space/y/4]
+#                                        )
+
+# dock_undock_container = oj.Mutable.Container(key="dock_undock_container",
+#                                              childs = [dock_undock_tlc]
+#                                              )
+from . import dummy_company_section_domain_components 
+grid_usp, undock_btns_bar,  info_box_container = dummy_company_section_domain_components.GridUSP()
+info_boxes = dummy_company_section_domain_components.info_cards()
+dockbar = Dockbar(info_boxes,
+                   [
+                      "Technology Solutions",
+                      "Financial Services",
+                      "Healthcare Innovations",
+                      "Green Energy Solutions",
+                      "Retail and Consumer Goods",
+                      "Transportation and Logistics",
+                      "Real Estate Development",
+                      "Digital Marketing",
+                      "Education and Training",
+                      "Entertainment and Media",
+                      "Food and Beverage"
+                  ]
+
+                  )
+info_box_container.childs.extend(dockbar.wrapped_components.values())
+
+undock_btns_bar.childs.extend(dockbar.undock_btns.values())
+dock_undock_container = grid_usp
 
 # ================================ end ===============================
 
@@ -276,17 +302,18 @@ italian_cuisine_hierarchy = json.loads("""
 """
 )
 
-def terminal_node_callback(spath):
+def terminal_node_callback(spath, msg):
     print ('terminal node selected', spath)
     pass
 
+
 hn = HierarchyNavigator(italian_cuisine_hierarchy, terminal_node_callback, key="myhinav")
 
-hn_depth_selector = oj.HCCMutable.StackH(childs = hn.steps, twsty_tags=[space/x/4])
+# hn_depth_selector = oj.HCCMutable.StackH(childs = hn.chil, twsty_tags=[space/x/4])
 
 hinav_container = oj.Mutable.Container(key="hinav_container",
-                                             childs = [hn_depth_selector,
-                                                       oj.Halign(hn.childpanel, content_type="mutable"),
+                                             childs = [hn.breadcrumb_panel,
+                                                       hn.childpanel,
                                    
                                                        hn
                                                        ]
@@ -296,10 +323,11 @@ hinav_container = oj.Mutable.Container(key="hinav_container",
 
 # ==================== putting everything together ===================
 viewdeck = oj.Mutable.StackD(key = "viewdeck",
-                             childs = [slider_container,
-                                       colorselector_container,
-                                       deck_container,
-                                       twocolumn_container,
+                             childs = [
+                                 # slider_container,
+                                 #       colorselector_container,
+                                 #       deck_container,
+                                 #       twocolumn_container,
                                        paginate_container,
                                        dock_undock_container,
                                        hinav_container
@@ -307,6 +335,20 @@ viewdeck = oj.Mutable.StackD(key = "viewdeck",
                              twsty_tags=[W/full, H/"5/6", space/y/6, db.f, jc.center],
                              height_anchor_key = paginate_container.key
                              )
+
+
+
+# <a
+#   class="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500"
+#   href="#"
+# >
+#   <span class="absolute inset-0 border border-current"></span>
+#   <span
+#     class="block border border-current bg-white px-12 py-3 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1"
+#   >
+#     Download
+#   </span>
+# </a>
 
 
 
@@ -318,57 +360,66 @@ def on_btn_click(dbref, msg, target_of):
     #viewdeck_.target.bring_to_front(msg.value)
     pass
 
-button_bar = oj.HCCMutable.StackW(childs = [oj.AC.Button(key="slider_btn",
-                                                          text="Slider selector",
-                                                          value=slider_container.id,
-                                                          on_click = on_btn_click
-                                                          ),
-                                             
-                                             oj.AC.Button(key = "colorselector_btn",
-                                                          text="Color selector",
-                                                          value=colorselector_container.id,
-                                                          on_click = on_btn_click
-                                                          ),
-                                             
-                                             oj.AC.Button(key="thedeck_btn",
-                                                          text="Deck Container",
-                                                          value=deck_container.id,
-                                                          on_click = on_btn_click
-                                                          ),
-                                             oj.AC.Button(key="twocolumn_btn",
-                                                          text="Two column container",
-                                                          value=twocolumn_container.id,
-                                                          on_click = on_btn_click
-                                                          ),
-                                             oj.AC.Button(key = "paginate_btn",
-                                                           text="Paginate a html component collection",
-                                                           value=paginate_container.id,
-                                                           on_click= on_btn_click),
-                                             oj.AC.Button(key="dockundock_btn",
-                                                          text="Dock/Undock components",
-                                                          value=dock_undock_container.id,
-                                                          on_click = on_btn_click
-                                                          ),
-                                            oj.AC.Button(key="hinav_btn",
-                                                          text="Hierarchical Navigation",
-                                                          value=hinav_container.id,
-                                                          on_click = on_btn_click
-                                                          )
-                                            
-                                            ],
-                                  twsty_tags=[W/full, mr/st/4, space/x/4]
-                                  )
+
+with oj.TwStyCtx(oj.ui_styles.un) as twctx:
+    button_bar = oj.HCCMutable.StackW(childs = [
+        # oj.AC.Button(key="slider_btn",
+        #                                                       text="Slider selector",
+        #                                                       value=slider_container.id,
+        #                                                       on_click = on_btn_click
+        #                                                       ),
+
+#                                          oj.AC.Button(key = "colorselector_btn",
+        #                                                       text="Color selector",
+        #                                                       value=colorselector_container.id,
+        #                                                       on_click = on_btn_click
+        #                                                       ),
+
+#                                          oj.AC.Button(key="thedeck_btn",
+        #                                                       text="Deck Container",
+        #                                                       value=deck_container.id,
+        #                                                       on_click = on_btn_click
+        #                                                       ),
+        #                                          oj.AC.Button(key="twocolumn_btn",
+        #                                                       text="Two column container",
+        #                                                       value=twocolumn_container.id,
+        #                                                       on_click = on_btn_click
+        #                                                       ),
+    oj.AC.Button(key = "paginate_btn",
+                 text="Pagination",
+                 classes="group inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500",
+                 
+                 value=paginate_container.id,
+                 on_click= on_btn_click),
+        oj.AC.Button(key="dockundock_btn",
+                     text="Dock/Undock",
+                     classes="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500",
+                     value=dock_undock_container.id,
+                     on_click = on_btn_click
+                     ),
+        oj.AC.Button(key="hinav_btn",
+                     text="Hierarchical Navigation",
+                     classes="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500",
+                     value=hinav_container.id,
+                     on_click = on_btn_click
+                     )
+
+    ],
+                                      twsty_tags=[W/full, mr/st/4, space/x/4]
+                                      )
             
 tlc = oj.HCCMutable.Container(childs= [title, button_bar, viewdeck],
                               twsty_tags=[H/screen, W/screen, space/y/4]
                           )
 # use cached optimized html rendering for responsive static pages. 
 from webpage_html_rendering_cache_optimization  import create_endpoint
+app = oj.load_app()
 wp_demo_advanced_components = create_endpoint(key="demo_advanced_components",
-                                 childs = [tlc],
-                                 title="Advanced components demo"
+                                              childs = [tlc],
+                                              title="Advanced components demo",
+                                              head_html="""<script src="https://cdn.tailwindcss.com"></script>"""
                                  )
-
+oj.add_jproute("/", wp_demo_advanced_components)
 # ================================ end ===============================
 
 
