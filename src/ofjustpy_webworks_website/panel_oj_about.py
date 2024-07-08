@@ -5,14 +5,15 @@ from ofjustpy_plugins import format_code
 from ofjustpy_components.component_mouseover_slideshow import SlideShow
 
 from .overview_ofjustpy_webapp_stack import about_ofjustpy_webapp_stack
-from .about_ofjustpy_demos import about_ofjustpy_demos
+with oj.uictx("about_components"):
+    from .about_ofjustpy_demos import about_ofjustpy_demos
 
 
 
 
 
 with writer_ctx:
-    with HCCMutable_Div(classes="space-y-4 w-2/3") as about_box:
+    with HCCMutable_Div(classes="space-y-4 w-5/6") as about_box:
 
         pass
 

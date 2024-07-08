@@ -39,11 +39,11 @@ with writer_ctx:
                             pass                                        
 
 
-            with Div(classes="mt-8 space-y-2"):            
+            with Div(classes="mt-8 space-y-2 overflow-auto p-4"):            
                 with Div(classes="text-center"):
                     with H2(text="Code Demo: A sample html using ofjustpy", classes="text-xl ", extra_classes="tracking-tight"):
                         pass
-                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight overflow-auto") as code_block_container:
+                with Div(classes="flex justify-center mt-2 font-bold text-sm tracking-tight") as code_block_container:
                     pass
                 
 

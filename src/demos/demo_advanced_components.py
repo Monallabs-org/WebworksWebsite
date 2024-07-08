@@ -439,6 +439,7 @@ wp_demo_advanced_components = create_endpoint(key="demo_advanced_components",
                                               childs = [tlc],
                                               title="Advanced components demo",
                                               body_classes="font-geist",
+                                              csr_bundle_dir="hyperui",
                                               head_html="""<script src="https://cdn.tailwindcss.com"></script>"""
                                  )
 oj.add_jproute("/demo_advanced_capabilities", wp_demo_advanced_components)

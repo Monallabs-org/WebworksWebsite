@@ -39,7 +39,7 @@ with oj.TwStyCtx(twsty):
 
 
 with writer_ctx:
-    with Div(classes="space-y-4 w-2/3") as overview_box:
+    with Div(classes="space-y-4 w-5/6") as overview_box:
 
         pass
 overview_box.components.append(feature_inline_html_infobox)
@@ -146,11 +146,23 @@ overview_panel = oj.PD.Subsection("Key Features", overview_box)
 
 from .panel_oj_about import about_panel
 
+def on_page_ready(dbref, msg, to_ms):
+    # reset the slideshows
+    # grab hold of the slideshow component
+    target = msg.page.session_manager.stubStore.about_components.demo_slideshow.target
+    slide_deck_ms = to_ms(target.staticCore.slide_deck)
+    slide_deck_ms.bring_to_front("/about_components/slide_demo")
 
+    target = msg.page.session_manager.stubStore.slideshow_techstack.target
+    slide_deck_ms = to_ms(target.staticCore.slide_deck)
+    slide_deck_ms.bring_to_front("/slide_python")
 
+    pass
 
 endpoint = oj.create_endpoint("overview",
-                              childs = [oj.HCCMutable.Container(childs=[top_panel, overview_panel, about_panel
+                              childs = [oj.HCCMutable.Container(childs=[top_panel,
+                                                                        overview_panel,
+                                                                        about_panel
                                                                 ],
                                                         twsty_tags=[mr/x/auto, space/y/4]
                                                         )
@@ -161,9 +173,10 @@ endpoint = oj.create_endpoint("overview",
                               skeleton_data_theme="seafoam",
                               #rendering_type="SSR"
                               csr_bundle_dir="overview_revised",
-                              head_html="""<script src="/static/hyperui/bundle.iife.js" defer></script>
-                              <script src="/static/shadcnui/bundle.iife.js" defer></script>
-                              <script src="/static/skeletonui/bundle.iife.js" defer></script>
+                              page_ready = on_page_ready,
+                              head_html="""<link rel="preload" src="/static/hyperui/bundle.iife.js" as="script"></script>
+                              <link rel="preload" src="/static/shadcnui/bundle.iife.js" as="script"></script>
+                              <link rel="preload src="/static/skeletonui/bundle.iife.js" as="script"></script>
 """
                               
                               )

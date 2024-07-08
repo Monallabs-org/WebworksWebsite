@@ -84,7 +84,8 @@ slide_info = {"demo": ("Basic and advanced components",
                                 ),
               }
 
-demo_slideShow = SlideShow("demos",
+
+demo_slideShow = SlideShow("demo_slideshow",
                            slide_labels,
                            slide_info,
                            "text_renderer")

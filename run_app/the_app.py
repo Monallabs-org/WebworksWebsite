@@ -9,7 +9,6 @@ class InitRequestStateMiddleware:
         if scope['type'] == 'http':
             request = Request(scope)
             # Initialize request.state
-            print("request state initialized")
             request.state.advanced_demo_bar_selected_btn = None
 
         await self.app(scope, receive, send)

@@ -1,7 +1,7 @@
 import macropy.activate
 from svelte_safelist_builder import get_svelte_safelist
 twtags, fontawesome_icons = get_svelte_safelist("ofjustpy_webworks_website.hyperui_component_library_showcase")
-print (fontawesome_icons)
+
 
 # which font families to include
 font_families = ["Geist", "Roboto"]

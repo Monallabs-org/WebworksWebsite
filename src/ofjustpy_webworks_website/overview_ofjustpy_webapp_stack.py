@@ -17,10 +17,10 @@ slide_info = {"python": ("Python",
                              oj.PC.Prose(text="Ofjustpy enables all aspects of webdevelopment through Python.")
                              ),
               "starlette": ("Async Processing",
-                                oj.PC.Prose(text="Starlette serves as the asynchronous web server engine sitting atop the Ofjustpy framework. Using async communication enables building responsive and efficient webapp")
+                                oj.PC.Prose(text="The underlying engine powering Ofjustpy is Starlette. Being an async runtime, it enables building responsive and efficient webapp")
                                 ),
-              "websockets": ("Websocket communication",
-                             oj.PC.Prose(text="All communication between webserver and UI takes place via websockets.")
+              "websockets": ("Websocket",
+                             oj.PC.Prose(text="All communication between webserver and the UI takes place via websockets.")
                              ),
               "svelte": ("Svelte at frontend",
                          oj.PC.Prose(text="All Ofjustpy directives to frontend are processed by Svelte runtime.")
@@ -29,11 +29,11 @@ slide_info = {"python": ("Python",
                                oj.PC.Prose(text="Tailwind CSS is used to control the layout and style the components of the webpage")
                                ),
               "deployment": ("Nginx and Unit",
-                                oj.PC.Prose(text="App written wint Ofjustpy, can be deploy with Nginx/Unit server")
+                                oj.PC.Prose(text="App written with Ofjustpy, can be deploy with Nginx/Unit server")
                                 ),
               }
 
-techstack_slideshow = SlideShow("techstack",
+techstack_slideshow = SlideShow("slideshow_techstack",
                                 slide_labels,
                                 slide_info,
                                 "starlette")
